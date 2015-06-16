@@ -1,0 +1,8 @@
+//This is the location of the jar file on disc you are injecting to
+INPUT_JAR="ToInject/MyMinecraftJarToInjectTo.jar"
+
+//Main class location where program enters
+INPUT_CLASS_MAIN="net.minecraft.client.main.Main"
+
+//This is your custom class file in this directory to do what you want
+INPUT_CLASS_HACK="InjectionThreadExample.class"
