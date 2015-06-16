@@ -27,6 +27,9 @@ $RECYCLE.BIN/
 .DS_Store
 .AppleDouble
 .LSOverride
+.classpath
+.project
+.settings
 
 # Thumbnails
 ._*
