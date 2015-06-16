@@ -5,9 +5,11 @@ This project is for educational purposes only, I am not responsible for how you 
 
 This program, when compiled is designed to inject a custom class call in the main method of a minecraft.jar file with the use of JavaAssist.
 
-Project Libraries:
-([https://github.com/zeroturnaround/zt-zip])
-([https://github.com/jboss-javassist/javassist])
+**Project Libraries:**
+
+https://github.com/zeroturnaround/zt-zip
+
+https://github.com/jboss-javassist/javassist
 
 **How to setup a class file to be injected on runtime?**
 
