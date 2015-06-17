@@ -1,11 +1,10 @@
 package me.jershdervis.mcjii;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javassist.ClassPath;
 import javassist.ClassPool;
@@ -16,19 +15,19 @@ import me.jershdervis.mcjii.util.JarHandler;
 
 public class Main {
 
-	public static ArrayList<String> settings;
+	public static Properties config = new Properties();
 
 	public Main() throws Exception {
-		settings = getSettings();
-		File inputJar = new File(getSetting(settings, "INPUT_JAR"));
-		String mainClass = getSetting(settings, "INPUT_CLASS_MAIN");
+		this.loadProperties(config);
+		File inputJar = new File(config.getProperty("INPUT_JAR"));
+		String mainClass = config.getProperty("INPUT_CLASS_MAIN");
 
 		//ReplaceAll wasn't working for some reason :/
 		StringBuilder sb = new StringBuilder();
 		char[] charObjectArray = mainClass.toCharArray();
 		for(char c : charObjectArray)
 			sb.append(c == '.' ? "/" : c);
-		
+
 		JarHandler jarHandler = new JarHandler();
 		String[] removeFiles = new String[] {"META-INF"}; 
 		jarHandler.modifyJarFiles(inputJar, removeFiles);
@@ -39,7 +38,7 @@ public class Main {
 		//Make hack method
 		CtClass cc = pool.get(mainClass); 
 		CtMethod m = CtNewMethod.make("public static void runClient() {"
-				+ "new " + getSetting(Main.settings, "INPUT_CLASS_HACK").replace(".class", "") + "();"
+				+ "new " + config.getProperty("INPUT_CLASS_HACK").replace(".class", "") + "();"
 				+ " }", cc);
 		cc.addMethod(m); 
 		//
@@ -59,27 +58,21 @@ public class Main {
 		new Main();
 	}
 
-	private ArrayList<String> getSettings() throws FileNotFoundException, IOException {
-		File settings = new File(".", "Settings.txt");
-		ArrayList<String> temp = new ArrayList<String>();
-		try(BufferedReader br = new BufferedReader(new FileReader(settings))) {
-			for(String line; (line = br.readLine()) != null; ) {
-				if(line.startsWith("//") && line.equals(""))
-					continue;
-				else if(line.contains("=")) {
-					temp.add(line);
+	private void loadProperties(Properties props) {
+		InputStream input = null;
+		try {
+			input = new FileInputStream("config.properties");
+			props.load(input);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
 		}
-		return temp;
-	}
-
-	public static String getSetting(ArrayList<String> settings, String prefix) {
-		for(String s : settings) {
-			if(s.startsWith(prefix)) {
-				return s.split("\"")[1].split("\"")[0];
-			}
-		}
-		return null;
 	}
 }

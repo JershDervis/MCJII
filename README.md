@@ -65,29 +65,29 @@ So now that we have our script built, we want to inject it? To do this we must g
 
 So now we have our class that is going to be injected into a minecraft jar file we actually need to get our jar we want to inject to. So if you have Minecraft installed with a version ready `e.g "1.8.7.jar"` we want to go copy this jar file from our versions folder in `%appdata%/.minecraft/versions/1.8.7/1.8.7.jar` and paste that file into our MCJII folder.
 
-**Settings Modification:**
+**Config Modification:**
 
-Now we want to head to our MCJII folder and if we don't already create a Settings.txt file. In this file we want to set the information that the injector uses to inject our script. Here is an example of a settings.txt file:
+Now we want to head to our MCJII folder and if we don't already create a config.properties file. In this file we want to set the information that the injector uses to inject our script. Here is an example of a config.properties file:
 
 ```
 
-//This is the location of the jar file on disc you are injecting to
-INPUT_JAR="C:\Users\Josh\Desktop\1.8.7.jar"
+//This is the location of the jar file on disc you are injecting to (Must use '/' as a separator)
+INPUT_JAR=C:/Users/Josh/Desktop/1.8.7.jar
 
 //Main class location where program enters
-INPUT_CLASS_MAIN="net.minecraft.client.main.Main"
+INPUT_CLASS_MAIN=net.minecraft.client.main.Main
 
 //This is your custom class file in this directory to do what you want
-INPUT_CLASS_HACK="MyScript.class"
+INPUT_CLASS_HACK=MyScript.class
 ```
 You can find this here:
-https://github.com/JershDervis/MCJII/blob/master/Settings.txt
+https://github.com/JershDervis/MCJII/blob/master/config.properties
 
-INPUT_JAR="" inside these quotation marks you will put the location of the Minecraft jar you will be injecting your script into, the one that we just copied into our MCJII directory for ease of access.
+INPUT_JAR=the location of the Minecraft jar you will be injecting your script into, the one that we just copied into our MCJII directory for ease of access.
 
-INPUT_CLASS_MAIN="" Inside these quotation marks you will put where the entry point of the programs class package location is the default in a Minecraft jar is `net.minecraft.client.main.Main` so you most likely wont need to change this.
+INPUT_CLASS_MAIN=where the entry point of the programs class package location is the default in a Minecraft jar is `net.minecraft.client.main.Main` so you most likely wont need to change this.
 
-INPUT_CLASS_HACK="" Inside these quotation marks you will put the location to your class file script that you wrote earlier, for example I used `MyScript.class`.
+INPUT_CLASS_HACK=the location to your class file script that you wrote earlier, for example I used `MyScript.class`.
 
 **Injection Process:**
 

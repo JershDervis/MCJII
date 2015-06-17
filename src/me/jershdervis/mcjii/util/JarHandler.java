@@ -34,7 +34,7 @@ public class JarHandler {
         }
         
         try {
-			unpackHackClass(new File(tempFolder, Main.getSetting(Main.settings, "INPUT_CLASS_HACK")));
+			unpackHackClass(new File(tempFolder, Main.config.getProperty("INPUT_CLASS_HACK")));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class JarHandler {
     }
     
     private static void unpackHackClass(File toDir) throws IOException {
-    	Files.copy(new File(".", Main.getSetting(Main.settings, "INPUT_CLASS_HACK")).getAbsoluteFile().toPath(), toDir.getAbsoluteFile().toPath());
+    	Files.copy(new File(".", Main.config.getProperty("INPUT_CLASS_HACK")).getAbsoluteFile().toPath(), toDir.getAbsoluteFile().toPath());
     }
 
 	public static boolean deleteDir(File directory) {
