@@ -15,23 +15,19 @@ import javassist.CtNewMethod;
 import me.jershdervis.mcjii.util.JarHandler;
 
 public class Main {
-	
+
 	public static ArrayList<String> settings;
 
 	public Main() throws Exception {
 		settings = getSettings();
 		File inputJar = new File(getSetting(settings, "INPUT_JAR"));
 		String mainClass = getSetting(settings, "INPUT_CLASS_MAIN");
-		
+
 		//ReplaceAll wasn't working for some reason :/
 		StringBuilder sb = new StringBuilder();
-		Character[] charObjectArray = toCharacterArray(mainClass);
-		for(Character c : charObjectArray) {
-			if(c.toString().equals(".")) {
-				sb.append("/");
-			} else
-				sb.append(c.toString());
-		}
+		char[] charObjectArray = mainClass.toCharArray();
+		for(char c : charObjectArray)
+			sb.append(c == '.' ? "/" : c);
 		
 		JarHandler jarHandler = new JarHandler();
 		String[] removeFiles = new String[] {"META-INF"}; 
@@ -85,15 +81,5 @@ public class Main {
 			}
 		}
 		return null;
-	}
-	
-	public static Character[] toCharacterArray(String sourceString) {
-	    char[] charArrays = new char[sourceString.length()];
-	    charArrays = sourceString.toCharArray();
-	    Character[] characterArray = new Character[charArrays.length];
-	    for (int i = 0; i < charArrays.length; i++) {
-	        characterArray[i] = charArrays[i];
-	    }
-	    return characterArray;
 	}
 }
