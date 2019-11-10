@@ -77,6 +77,9 @@ INPUT_JAR=C:/Users/Josh/Desktop/1.8.7.jar
 //Main class location where program enters
 INPUT_CLASS_MAIN=net.minecraft.client.main.Main
 
+// This is the method that your class will be called from
+INJECTION_METHOD=main
+
 //This is your custom class file in this directory to do what you want
 INPUT_CLASS_HACK=MyScript.class
 ```
@@ -86,6 +89,8 @@ https://github.com/JershDervis/MCJII/blob/master/config.properties
 INPUT_JAR=the location of the Minecraft jar you will be injecting your script into, the one that we just copied into our MCJII directory for ease of access.
 
 INPUT_CLASS_MAIN=where the entry point of the programs class package location is the default in a Minecraft jar is `net.minecraft.client.main.Main` so you most likely wont need to change this.
+
+INPUT_CLASS_HACK=the method that your class will be called from
 
 INPUT_CLASS_HACK=the location to your class file script that you wrote earlier, for example I used `MyScript.class`.
 
