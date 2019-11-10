@@ -21,6 +21,7 @@ public class Main {
 		this.loadProperties(config);
 		File inputJar = new File(config.getProperty("INPUT_JAR"));
 		String mainClass = config.getProperty("INPUT_CLASS_MAIN");
+		String injectionMethod = config.getProperty("INJECTION_METHOD");
 
 		//ReplaceAll wasn't working for some reason :/
 		StringBuilder sb = new StringBuilder();
@@ -44,7 +45,7 @@ public class Main {
 		//
 
 		//Invoke method call
-		CtMethod method = cc.getDeclaredMethod("main");
+		CtMethod method = cc.getDeclaredMethod(injectionMethod);
 		method.insertBefore("runClient();");
 		//
 
