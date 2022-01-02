@@ -1,5 +1,5 @@
 # MCJII
-A Minecraft Jar Injection Infector
+A Minecraft Jar Injection Tool
 
 This project is for educational purposes only, I am not responsible for how you use this. I wrote this to further understand injection in Java, and how to use JavaAssist.
 
